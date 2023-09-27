@@ -80,6 +80,7 @@ function App() {
 
   // Регистр
   function registrationUser({ name, email, password }) {
+    setIsLoading(true);
     api
       .register(name, email, password)
       .then(() => {
@@ -92,10 +93,14 @@ function App() {
         setIsSuccess(false)
         console.log(error)
       })
+       .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   // Логин
   function loginUser({ email, password }) {
+    setIsLoading(true);
     api
       .authorize(email, password)
       .then((res) => {
@@ -112,6 +117,9 @@ function App() {
         setIsSuccess(false)
         console.log(error)
       })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   // Поставить лайк фильму

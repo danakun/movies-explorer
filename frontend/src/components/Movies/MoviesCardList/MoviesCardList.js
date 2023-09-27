@@ -4,6 +4,11 @@ import {
   COUNTER_MOVIE_DESKTOP_CARD,
   COUNTER_MOVIE_TABLET_CARD,
   COUNTER_MOVIE_MOBILE_CARD,
+  DISPLAY_XL,
+  DISPLAY_L,
+  FIVE,
+  EIGHT,
+  TWELVE
 } from "../../../utils/constants"
 import MoviesCard from "../MoviesCard/MoviesCard"
 import SearchError from "../SearchError/SearchError"
@@ -29,23 +34,25 @@ function MoviesCardList({
   }
 
   // Количество отображаемых карточек с фильмами
-  function showMovieCounterDisplayWidth() {
-    const display = window.innerWidth
-    if (display > 1180) {
-      setShownMovies(12)
-    } else if (display > 767) {
-      setShownMovies(8)
-    } else {
-      setShownMovies(5)
-    }
+function showMovieCounterDisplayWidth() {
+  const display = window.innerWidth;
+
+  if (display >= DISPLAY_XL) {
+    setShownMovies(TWELVE);
+  } else if (display <= DISPLAY_L) {
+    setShownMovies(FIVE);
+  } else {
+    setShownMovies(EIGHT);
   }
+}
 
   // Количество отображаемых карточек на экране, при клике на кнопку Ещё
   function showMovieCounterBtnPluse() {
     const display = window.innerWidth
-    if (display > 1180) {
+    if (display > DISPLAY_XL) {
       setShownMovies(shownMovies + COUNTER_MOVIE_DESKTOP_CARD)
-    } else if (display > 767) {
+    }
+     else if (display > DISPLAY_L) {
       setShownMovies(shownMovies + COUNTER_MOVIE_TABLET_CARD)
     } else {
       setShownMovies(shownMovies + COUNTER_MOVIE_MOBILE_CARD)
@@ -62,6 +69,9 @@ function MoviesCardList({
     setTimeout(() => {
       window.addEventListener("resize", showMovieCounterDisplayWidth)
     }, 500)
+    return () => {
+      window.removeEventListener("resize", showMovieCounterDisplayWidth)
+    }
   })
 
   return (
