@@ -1,8 +1,8 @@
 import { getChangeResponse } from "./helpers"
 
-export const BASE_URL = "http://localhost:3000"
+// export const BASE_URL = "http://localhost:3000"
 
-// export const BASE_URL = 'https://api.danamovies.nomoredomainsicu.ru';
+export const BASE_URL = 'https://api.danamovies.nomoredomainsicu.ru';
 
 export const getMovies = () => {
   return fetch(`${BASE_URL}/movies`, {
