@@ -1,4 +1,4 @@
-## Диплом Даны Лиепиньш
+## Diploma Project of Dana Kun
 
-Тема light-4
+theme light-4
 
